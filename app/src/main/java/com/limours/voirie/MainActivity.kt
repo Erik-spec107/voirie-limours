@@ -332,7 +332,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun launchCamera() {
-        val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.FRANCEANCEANCE).format(Date())
+        val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.FRANCE).format(Date())
         val photoFile = File(getExternalFilesDir(Environment.DIRECTORY_PICTURES), "photo_$timeStamp.jpg")
         photoPath = photoFile.absolutePath
         currentPhotoUri = FileProvider.getUriForFile(this, "com.limours.voirie.fileprovider", photoFile)
@@ -354,7 +354,7 @@ class MainActivity : AppCompatActivity() {
             if (uri != null) {
                 // Galerie
                 if (data?.data != null) {
-                    val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.FRANCEANCEANCE).format(Date())
+                    val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.FRANCE).format(Date())
                     val destFile = File(getExternalFilesDir(Environment.DIRECTORY_PICTURES), "photo_$timeStamp.jpg")
                     contentResolver.openInputStream(data.data!!)?.use { input ->
                         FileOutputStream(destFile).use { output -> input.copyTo(output) }
@@ -396,8 +396,8 @@ class MainActivity : AppCompatActivity() {
             if (idx >= 0 && etAutre.text.isNotBlank()) it[idx] = etAutre.text.toString().trim()
         }
         val now = Date()
-        val dateFmt = SimpleDateFormat("dd/MM/yyyy", Locale.FRANCEANCEANCE)
-        val heureFmt = SimpleDateFormat("HH:mm", Locale.FRANCEANCEANCE)
+        val dateFmt = SimpleDateFormat("dd/MM/yyyy", Locale.FRANCE)
+        val heureFmt = SimpleDateFormat("HH:mm", Locale.FRANCE)
         val photoNom = if (photoPath.isNotEmpty()) File(photoPath).name else ""
 
         val rec = JSONObject().apply {
@@ -474,7 +474,7 @@ class MainActivity : AppCompatActivity() {
     // ── LISTE ──
     private fun renderListe() {
         val db = getDB()
-        val today = SimpleDateFormat("dd/MM/yyyy", Locale.FRANCEANCEANCE).format(Date())
+        val today = SimpleDateFormat("dd/MM/yyyy", Locale.FRANCE).format(Date())
         var graves = 0; var todays = 0
         for (i in 0 until db.length()) {
             val d = db.getJSONObject(i)
@@ -597,7 +597,7 @@ class MainActivity : AppCompatActivity() {
             sb.appendLine(row.joinToString(","))
         }
 
-        val today = SimpleDateFormat("dd-MM-yyyy", Locale.FRANCEANCEANCE).format(Date())
+        val today = SimpleDateFormat("dd-MM-yyyy", Locale.FRANCE).format(Date())
         val csvFile = File(filesDir, "voirie_limours_$today.csv")
         csvFile.writeText("\uFEFF$sb")  // BOM UTF-8 pour Excel
 
